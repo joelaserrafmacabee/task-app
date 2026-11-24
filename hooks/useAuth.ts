@@ -108,6 +108,22 @@ export function useAuth(): UseAuthReturn {
     }
   };
 
+  // NEW: log in with GitHub (needs the GitHub provider turned on in Supabase).
+  const handleGitHubLogin = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "github",
+        options: {
+          redirectTo: `${window.location.origin}/dashboard`,
+        },
+      });
+      if (error) setError(error.message);
+    } catch (error: any) {
+      setError(error.message);
+      console.error("Error with GitHub login:", error);
+    }
+  };
+
   const handleSignup = async () => {
     clearError();
     try {
@@ -169,6 +185,7 @@ export function useAuth(): UseAuthReturn {
     signOut,
     handleLogin,
     handleGoogleLogin,
+    handleGitHubLogin,
     handleSignup,
     setEmail,
     setPassword,

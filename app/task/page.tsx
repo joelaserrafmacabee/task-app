@@ -38,6 +38,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/components/hooks/use-toast";
 import Image from "next/image";
 import { useDropzone } from "react-dropzone";
+import SubtaskSection from "@/components/SubtaskSection";
 
 function TaskForm() {
   const params = useSearchParams();
@@ -275,6 +276,7 @@ function TaskForm() {
           </Button>
         </div>
       </form>
+      <SubtaskSection taskId={taskId} />
     </div>
   );
 }

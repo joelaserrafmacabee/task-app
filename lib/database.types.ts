@@ -39,6 +39,47 @@ export type Database = {
         }
         Relationships: []
       }
+      subtasks: {
+        Row: {
+          ai_generated: boolean
+          completed: boolean
+          created_at: string | null
+          position: number
+          subtask_id: string
+          task_id: string
+          title: string
+          user_id: string
+        }
+        Insert: {
+          ai_generated?: boolean
+          completed?: boolean
+          created_at?: string | null
+          position?: number
+          subtask_id?: string
+          task_id: string
+          title: string
+          user_id: string
+        }
+        Update: {
+          ai_generated?: boolean
+          completed?: boolean
+          created_at?: string | null
+          position?: number
+          subtask_id?: string
+          task_id?: string
+          title?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "subtasks_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["task_id"]
+          },
+        ]
+      }
       tasks: {
         Row: {
           completed: boolean | null
